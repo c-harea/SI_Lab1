@@ -5,16 +5,18 @@
 int main(int argc, char *argv[])
 {
     // the expanded keySize
-    int expandedKeySize = 176;
+    int expandedKeySize = EXP_SIZE_32;
 
     // the expanded key
     unsigned char expandedKey[expandedKeySize];
 
     // the cipher key
-    unsigned char key[16] = {'k', 'k', 'k', 'k', 'e', 'e', 'e', 'e', 'y', 'y', 'y', 'y', '.', '.', '.', '.'};
+    //unsigned char key[16] = {0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc, 0xd, 0xe, 0xf, 0x10, 0x11, 0x12, 0x13, 0x14};
+    //unsigned char key[24] = {0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc, 0xd, 0xe, 0xf, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c};
+    unsigned char key[32] = {0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc, 0xd, 0xe, 0xf, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21, 0x22, 0x23, 0x24};
 
     // the cipher key size
-    enum keySize size = SIZE_16;
+    enum keySize size = SIZE_32;
 
     // the plaintext
     unsigned char plaintext[16] = {'a', 'b', 'c', 'd', 'e', 'f', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
@@ -33,7 +35,7 @@ int main(int argc, char *argv[])
 
     printf("\nCipher Key (HEX format):\n");
 
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < SIZE_32; i++)
     {
         // Print characters in HEX format, 16 chars per line
         printf("%2.2x%c", key[i], ((i + 1) % 16) ? ' ' : '\n');
@@ -57,7 +59,7 @@ int main(int argc, char *argv[])
     }
 
     // AES Encryption
-    aes_encrypt(plaintext, ciphertext, key, SIZE_16);
+    aes_encrypt(plaintext, ciphertext, key, SIZE_32);
 
     printf("\nCiphertext (HEX format):\n");
 
@@ -67,7 +69,7 @@ int main(int argc, char *argv[])
     }
 
     // AES Decryption
-    aes_decrypt(ciphertext, decryptedtext, key, SIZE_16);
+    aes_decrypt(ciphertext, decryptedtext, key, SIZE_32);
 
     printf("\nDecrypted text (HEX format):\n");
 

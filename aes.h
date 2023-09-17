@@ -18,6 +18,13 @@ enum keySize
     SIZE_32 = 32
 };
 
+enum expKeySize
+{
+    EXP_SIZE_16 = 176,
+    EXP_SIZE_24 = 208,
+    EXP_SIZE_32 = 254
+};
+
 extern void expandKey(unsigned char *expandedKey, unsigned char *key, enum keySize, unsigned char expandedKeySize);
 
 // Implementation: AES encryption
